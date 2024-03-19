@@ -1,0 +1,17 @@
+name: Flutter CI
+
+on: [push]  # Trigger on code pushes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Run on Ubuntu
+
+    steps:
+      - uses: actions/checkout@v3  # Check out your repository code
+      - uses: subosito/flutter-action@v2  # Setup Flutter environment
+        with:
+          flutter-version: '>=3.3.0 <4.0.0' # Specify the Flutter version you need
+
+      - run: flutter pub get  # Get dependencies
+      - run: flutter test     # Run tests
+      - run: flutter build apk --release  # Build Android APK
